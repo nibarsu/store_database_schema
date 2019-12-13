@@ -1,0 +1,523 @@
+-- phpMyAdmin SQL Dump
+-- version 2.10.3
+-- http://www.phpmyadmin.net
+-- 
+-- 主機: localhost
+-- 建立日期: Dec 13, 2019, 08:03 AM
+-- 伺服器版本: 5.0.51
+-- PHP 版本: 5.2.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+-- 
+-- 資料庫: `store`
+-- 
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `cust_m`
+-- 
+
+CREATE TABLE `cust_m` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `PHONE` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `EMAIL` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `ADDR` text collate utf8_unicode_ci NOT NULL,
+  `SID` tinyint(4) NOT NULL,
+  `REMARK` text collate utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `emp`
+-- 
+
+CREATE TABLE `emp` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(20) collate utf8_unicode_ci NOT NULL COMMENT '中文姓名',
+  `PHONE1` varchar(20) collate utf8_unicode_ci NOT NULL COMMENT '聯絡電話',
+  `PHONE2` varchar(20) collate utf8_unicode_ci NOT NULL COMMENT '聯絡電話2',
+  `ADDR` text collate utf8_unicode_ci NOT NULL COMMENT '地址',
+  `HIRED_DATE` date NOT NULL,
+  `QUIT_DATE` date NOT NULL,
+  `ENABLE` enum('Y','N') collate utf8_unicode_ci NOT NULL,
+  `CTIME` datetime NOT NULL,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inventory`
+-- 
+
+CREATE TABLE `inventory` (
+  `SID` int(11) NOT NULL,
+  `TYPE` enum('1','2') collate utf8_unicode_ci NOT NULL COMMENT 'inv_type',
+  `PID` int(11) NOT NULL,
+  `QTY` int(11) NOT NULL,
+  KEY `SID` (`SID`,`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inventory_20110613`
+-- 
+
+CREATE TABLE `inventory_20110613` (
+  `SID` int(11) NOT NULL,
+  `TYPE` enum('1','2') collate utf8_unicode_ci NOT NULL COMMENT 'inv_type',
+  `PID` int(11) NOT NULL,
+  `QTY` int(11) NOT NULL,
+  KEY `SID` (`SID`,`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inventory_20110614`
+-- 
+
+CREATE TABLE `inventory_20110614` (
+  `SID` int(11) NOT NULL,
+  `TYPE` enum('1','2') collate utf8_unicode_ci NOT NULL COMMENT 'inv_type',
+  `PID` int(11) NOT NULL,
+  `QTY` int(11) NOT NULL,
+  KEY `SID` (`SID`,`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inventory_20110617`
+-- 
+
+CREATE TABLE `inventory_20110617` (
+  `SID` int(11) NOT NULL,
+  `TYPE` enum('1','2') collate utf8_unicode_ci NOT NULL COMMENT 'inv_type',
+  `PID` int(11) NOT NULL,
+  `QTY` int(11) NOT NULL,
+  KEY `SID` (`SID`,`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inventory_20110622`
+-- 
+
+CREATE TABLE `inventory_20110622` (
+  `SID` int(11) NOT NULL,
+  `TYPE` enum('1','2') collate utf8_unicode_ci NOT NULL COMMENT 'inv_type',
+  `PID` int(11) NOT NULL,
+  `QTY` int(11) NOT NULL,
+  KEY `SID` (`SID`,`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inv_coor_data`
+-- 
+
+CREATE TABLE `inv_coor_data` (
+  `SID` tinyint(4) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`CODE`),
+  KEY `SID` (`SID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inv_coor_data_3c`
+-- 
+
+CREATE TABLE `inv_coor_data_3c` (
+  `SID` tinyint(4) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`CODE`),
+  KEY `SID` (`SID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inv_coor_data_wone`
+-- 
+
+CREATE TABLE `inv_coor_data_wone` (
+  `SID` tinyint(4) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`CODE`),
+  KEY `SID` (`SID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `inv_type`
+-- 
+
+CREATE TABLE `inv_type` (
+  `ID` tinyint(11) NOT NULL,
+  `NAME` varchar(10) collate utf8_unicode_ci NOT NULL COMMENT '交易型態',
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `menu_type`
+-- 
+
+CREATE TABLE `menu_type` (
+  `ID` int(11) NOT NULL COMMENT '序號',
+  `NAME` text collate utf8_unicode_ci NOT NULL COMMENT '類別名稱',
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `menu_type_d`
+-- 
+
+CREATE TABLE `menu_type_d` (
+  `ID` int(11) NOT NULL COMMENT '序號',
+  `TYPE` int(11) NOT NULL COMMENT '選單類別',
+  `NAME` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '選單上的名稱',
+  `FILE_NAME` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `BASIC` enum('N','Y') collate utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `ID` (`ID`),
+  KEY `TYPE` (`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_d`
+-- 
+
+CREATE TABLE `prod_d` (
+  `ID` int(11) NOT NULL,
+  `LINE` int(11) NOT NULL,
+  `RT_ID` int(11) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `COST` double NOT NULL,
+  `SID` tinyint(4) NOT NULL COMMENT '庫別',
+  `TYPE` tinyint(4) NOT NULL COMMENT 'trans type',
+  UNIQUE KEY `ID` (`ID`,`LINE`),
+  UNIQUE KEY `CODE` (`CODE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_d_20110613`
+-- 
+
+CREATE TABLE `prod_d_20110613` (
+  `ID` int(11) NOT NULL,
+  `LINE` int(11) NOT NULL,
+  `RT_ID` int(11) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `COST` double NOT NULL,
+  `SID` tinyint(4) NOT NULL COMMENT '庫別',
+  `TYPE` tinyint(4) NOT NULL COMMENT 'trans type',
+  UNIQUE KEY `ID` (`ID`,`LINE`),
+  UNIQUE KEY `CODE` (`CODE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_d_20110614`
+-- 
+
+CREATE TABLE `prod_d_20110614` (
+  `ID` int(11) NOT NULL,
+  `LINE` int(11) NOT NULL,
+  `RT_ID` int(11) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `COST` double NOT NULL,
+  `SID` tinyint(4) NOT NULL COMMENT '庫別',
+  `TYPE` tinyint(4) NOT NULL COMMENT 'trans type',
+  UNIQUE KEY `ID` (`ID`,`LINE`),
+  UNIQUE KEY `CODE` (`CODE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_d_20110617`
+-- 
+
+CREATE TABLE `prod_d_20110617` (
+  `ID` int(11) NOT NULL,
+  `LINE` int(11) NOT NULL,
+  `RT_ID` int(11) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `COST` double NOT NULL,
+  `SID` tinyint(4) NOT NULL COMMENT '庫別',
+  `TYPE` tinyint(4) NOT NULL COMMENT 'trans type',
+  UNIQUE KEY `ID` (`ID`,`LINE`),
+  UNIQUE KEY `CODE` (`CODE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_d_20110622`
+-- 
+
+CREATE TABLE `prod_d_20110622` (
+  `ID` int(11) NOT NULL,
+  `LINE` int(11) NOT NULL,
+  `RT_ID` int(11) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `COST` double NOT NULL,
+  `SID` tinyint(4) NOT NULL COMMENT '庫別',
+  `TYPE` tinyint(4) NOT NULL COMMENT 'trans type',
+  UNIQUE KEY `ID` (`ID`,`LINE`),
+  UNIQUE KEY `CODE` (`CODE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_m`
+-- 
+
+CREATE TABLE `prod_m` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(100) collate utf8_unicode_ci NOT NULL,
+  `CODE` varchar(30) collate utf8_unicode_ci NOT NULL COMMENT '新商品條碼',
+  `TYPE` int(11) NOT NULL,
+  `VID` int(11) NOT NULL,
+  `COST` double NOT NULL,
+  `UID` int(11) NOT NULL,
+  `CTIME` datetime NOT NULL,
+  UNIQUE KEY `ID` (`ID`,`TYPE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `prod_type`
+-- 
+
+CREATE TABLE `prod_type` (
+  `ID` int(11) NOT NULL,
+  `NAME` text collate utf8_unicode_ci NOT NULL COMMENT '產品類別名稱',
+  `ENABLE` enum('Y','N') collate utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `rt`
+-- 
+
+CREATE TABLE `rt` (
+  `ID` int(11) NOT NULL COMMENT 'RT ID',
+  `VID` int(11) NOT NULL COMMENT '廠商',
+  `PFLAG` enum('N','Y') collate utf8_unicode_ci NOT NULL COMMENT '已付未付',
+  `TFLAG` enum('T','F') collate utf8_unicode_ci NOT NULL COMMENT 'T:應稅 F:免稅',
+  `AMT` int(11) NOT NULL COMMENT '總金額',
+  `REMARK` text collate utf8_unicode_ci NOT NULL,
+  `SID` tinyint(4) NOT NULL,
+  `UID` int(11) NOT NULL COMMENT 'CREATE BY',
+  `CTIME` datetime NOT NULL COMMENT 'CREATE DATE',
+  `PUID` tinyint(4) NOT NULL,
+  `PTIME` datetime NOT NULL,
+  UNIQUE KEY `ID` (`ID`),
+  KEY `VID` (`VID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `rt_d`
+-- 
+
+CREATE TABLE `rt_d` (
+  `ID` int(11) NOT NULL COMMENT 'RT ID',
+  `LINE` int(11) NOT NULL COMMENT '項次',
+  `PID` int(11) NOT NULL COMMENT 'PROD ID',
+  `QTY` int(11) NOT NULL COMMENT '數量',
+  `SUBAMT` int(11) NOT NULL COMMENT '單項小計金額',
+  `PRICE` double NOT NULL COMMENT '單價',
+  UNIQUE KEY `ID` (`ID`,`LINE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `so`
+-- 
+
+CREATE TABLE `so` (
+  `ID` int(11) NOT NULL COMMENT '銷售序號',
+  `TYPE` tinyint(4) NOT NULL,
+  `COST` int(11) NOT NULL COMMENT '總成本',
+  `AMT` int(11) NOT NULL COMMENT '總售價',
+  `PROFIT` int(11) NOT NULL COMMENT '利潤',
+  `UNPAY` int(11) NOT NULL COMMENT '掛帳金額',
+  `CASH` int(11) NOT NULL COMMENT '現金金額',
+  `CARD` int(11) NOT NULL COMMENT '刷卡金額',
+  `LAYAPAY` int(11) NOT NULL COMMENT '分期金額',
+  `FCURR` varchar(10) collate utf8_unicode_ci NOT NULL COMMENT '外幣幣別',
+  `FCASH` double NOT NULL COMMENT '外幣金額',
+  `PREPAY` int(11) NOT NULL COMMENT '訂金',
+  `REMARK` text collate utf8_unicode_ci NOT NULL COMMENT '備註',
+  `CID` int(11) NOT NULL COMMENT '客戶',
+  `CNAME` varchar(50) collate utf8_unicode_ci NOT NULL COMMENT '客戶名稱',
+  `TSID` tinyint(4) NOT NULL,
+  `TEMP` tinyint(4) NOT NULL COMMENT '店員',
+  `TFLAG` enum('','N','Y') collate utf8_unicode_ci NOT NULL COMMENT '轉倉標記 N:待接收 Y:已接收',
+  `SID` tinyint(4) NOT NULL,
+  `UID` int(11) NOT NULL COMMENT '銷售員',
+  `CTIME` datetime NOT NULL,
+  UNIQUE KEY `ID` (`ID`),
+  KEY `SID` (`SID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `so_d`
+-- 
+
+CREATE TABLE `so_d` (
+  `ID` int(11) NOT NULL,
+  `LINE` tinyint(4) NOT NULL,
+  `PID` int(11) NOT NULL COMMENT 'PROD_M.ID',
+  `PDLINE` int(11) NOT NULL COMMENT 'PROD_D.LINE',
+  `QTY` int(11) NOT NULL,
+  `PRICE` int(11) NOT NULL COMMENT '暫不用存',
+  UNIQUE KEY `ID` (`ID`,`LINE`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `stocktake_data`
+-- 
+
+CREATE TABLE `stocktake_data` (
+  `SID` tinyint(4) NOT NULL,
+  `CODE` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `DATA` varchar(100) collate utf8_unicode_ci NOT NULL,
+  `FLAG` enum('N','Y') collate utf8_unicode_ci NOT NULL,
+  KEY `SID` (`SID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='盤點檔案資料';
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `store_m`
+-- 
+
+CREATE TABLE `store_m` (
+  `ID` int(11) NOT NULL,
+  `NAME` text collate utf8_unicode_ci NOT NULL,
+  `REMARK` text collate utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `transaction`
+-- 
+
+CREATE TABLE `transaction` (
+  `ID` int(11) NOT NULL COMMENT '交易序號',
+  `SID` int(11) NOT NULL COMMENT '倉庫別',
+  `IID` int(11) NOT NULL COMMENT '交易型態',
+  `FID` int(11) NOT NULL COMMENT '交易單號(RT SO)',
+  `PID` int(11) NOT NULL COMMENT '產品ID',
+  `QTY` int(11) NOT NULL COMMENT '數量',
+  `PRICE` double NOT NULL,
+  `UID` int(11) NOT NULL,
+  `CTIME` datetime NOT NULL COMMENT '交易日期',
+  UNIQUE KEY `ID` (`ID`),
+  KEY `SID` (`SID`,`IID`,`PID`,`QTY`,`CTIME`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `trans_type`
+-- 
+
+CREATE TABLE `trans_type` (
+  `ID` tinyint(4) NOT NULL,
+  `NAME` varchar(10) collate utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `user_d`
+-- 
+
+CREATE TABLE `user_d` (
+  `ID` int(11) NOT NULL,
+  `DID` int(11) NOT NULL,
+  UNIQUE KEY `ID` (`ID`,`DID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `user_m`
+-- 
+
+CREATE TABLE `user_m` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(10) collate utf8_unicode_ci NOT NULL,
+  `PASS` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `STORE_FLAG` tinyint(4) NOT NULL COMMENT '跨庫別',
+  `DID` int(11) NOT NULL,
+  `SID` int(11) NOT NULL COMMENT '預設庫別',
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `user_store_d`
+-- 
+
+CREATE TABLE `user_store_d` (
+  `ID` int(11) NOT NULL COMMENT 'user id',
+  `SID` int(11) NOT NULL COMMENT '庫別',
+  UNIQUE KEY `ID` (`ID`,`SID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+-- 
+-- 資料表格式： `ven_m`
+-- 
+
+CREATE TABLE `ven_m` (
+  `ID` int(11) NOT NULL,
+  `STATUS` enum('O','C') collate utf8_unicode_ci NOT NULL,
+  `NAME` varchar(200) collate utf8_unicode_ci NOT NULL COMMENT '公司名稱',
+  `FAX` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `PHONE1` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `PHONE2` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `SNAME` varchar(50) collate utf8_unicode_ci NOT NULL,
+  `ADDR` text collate utf8_unicode_ci NOT NULL COMMENT '地址',
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
